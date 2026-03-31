@@ -12,28 +12,28 @@ const navItems = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[rgba(8,14,20,0.84)] backdrop-blur-xl">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-amber-300/30 bg-amber-300/15 text-sm font-semibold tracking-[0.24em] text-amber-200">
-            XAU
+    <header className="sticky top-0 z-50 px-4 pt-4 sm:px-6 lg:px-8">
+      <div className="panel mx-auto flex w-full max-w-7xl items-center justify-between gap-6 rounded-[2rem] px-4 py-3 sm:px-5">
+        <Link href="/" className="flex min-w-0 items-center gap-3">
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-amber-300/35 bg-amber-300/12 text-sm font-semibold tracking-[0.24em] text-amber-100 shadow-lg shadow-amber-300/10">
+            X
           </div>
-          <div>
-            <p className="text-sm font-semibold tracking-[0.24em] text-white/90 uppercase">
-              Extreme Expert
+          <div className="min-w-0">
+            <p className="truncate text-sm font-semibold tracking-[0.24em] text-white/95 uppercase">
+              XAUUSD Extreme Expert
             </p>
-            <p className="text-xs text-slate-300">
-              Bedah XAUUSD dengan struktur, likuiditas, dan konteks
+            <p className="truncate text-xs text-slate-400">
+              Analyst desk untuk structure, liquidity, dan price action
             </p>
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-2 lg:flex">
+        <nav className="hidden flex-1 items-center justify-center gap-1.5 xl:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-full px-4 py-2 text-sm text-slate-200 transition hover:bg-white/10 hover:text-white"
+              className="rounded-full px-3.5 py-2 text-sm text-slate-300 transition hover:bg-white/8 hover:text-white"
             >
               {item.label}
             </Link>
@@ -42,7 +42,7 @@ export function SiteHeader() {
 
         <Link
           href="/daily-bias"
-          className="rounded-full border border-amber-300/40 bg-amber-300/15 px-4 py-2 text-sm font-medium text-amber-100 transition hover:bg-amber-300/25"
+          className="rounded-full border border-amber-300/35 bg-amber-300/14 px-4 py-2 text-sm font-medium text-amber-100 transition hover:bg-amber-300/22"
         >
           Lihat Bias
         </Link>
