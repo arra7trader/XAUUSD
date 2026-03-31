@@ -89,10 +89,10 @@ export function ChartEmbedPanel({
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div>
           <p className="text-xs font-semibold tracking-[0.24em] text-amber-200 uppercase">
-            Live Chart Lab
+            War Room Chart
           </p>
           <p className="text-sm text-slate-400">
-            Gunakan multi-timeframe, tandai level penting, lalu cocokkan dengan narasi makro.
+            Baca multi-timeframe, tandai level penting, lalu nilai acceptance atau rejection-nya.
           </p>
         </div>
         <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-300">

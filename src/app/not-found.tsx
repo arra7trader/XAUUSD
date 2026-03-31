@@ -8,17 +8,17 @@ export default function NotFound() {
           Halaman tidak ditemukan
         </p>
         <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-          Mungkin slug materinya belum ada atau URL-nya salah
+          Route yang kamu cari tidak tersedia atau URL-nya salah
         </h1>
         <p className="mt-4 text-lg leading-8 text-slate-300">
-          Kembali ke roadmap utama untuk memilih materi, studi kasus, atau analisa mingguan yang tersedia.
+          Kembali ke dashboard war room untuk membaca bias harian, key levels, dan skenario aktif XAUUSD.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link
-            href="/kurikulum"
+            href="/daily-bias"
             className="rounded-full border border-amber-300/40 bg-amber-300/15 px-5 py-3 text-sm font-medium text-amber-100"
           >
-            Buka kurikulum
+            Buka daily bias
           </Link>
           <Link
             href="/"

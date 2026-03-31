@@ -1,15 +1,14 @@
 import Link from "next/link";
 
-import { CaseStudyCard } from "@/components/case-study-card";
 import { ChartEmbedPanel } from "@/components/chart-embed-panel";
+import { journalEntries, scenarios } from "@/lib/analysis-data";
 import { buildMetadata } from "@/lib/metadata";
-import { getCaseStudies } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = buildMetadata({
-  title: "Chart Lab XAUUSD",
+  title: "War Room Chart XAUUSD",
   description:
-    "Latihan membaca live chart XAUUSD dengan checklist top-down analysis, level penting, timing sesi, dan faktor fundamental.",
+    "War room chart XAUUSD untuk membaca structure, key levels, liquidity, dan acceptance dari live chart.",
   path: "/chart-lab",
 });
 
@@ -22,20 +21,19 @@ const checklist = [
 ];
 
 export default async function ChartLabPage() {
-  const caseStudies = await getCaseStudies();
-
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
       <section className="space-y-5">
         <p className="text-xs font-semibold tracking-[0.24em] text-amber-200 uppercase">
-          Chart Lab
+          War Room Chart
         </p>
         <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-          Tempat berlatih membaca chart live XAUUSD dengan kerangka berpikir yang rapi
+          Tempat utama untuk membedah chart live XAUUSD dengan kerangka analisa yang rapi
         </h1>
         <p className="max-w-3xl text-lg leading-8 text-slate-300">
-          Gunakan chart embed untuk membandingkan struktur, level, sesi, dan katalis
-          makro. Fokus halaman ini adalah latihan analisa, bukan sinyal trading.
+          Gunakan chart embed untuk membaca structure, session range, liquidity pool,
+          dan respons harga terhadap level. Fokus halaman ini adalah analisa aktif,
+          bukan sinyal trading.
         </p>
       </section>
 
@@ -43,9 +41,9 @@ export default async function ChartLabPage() {
 
       <section className="grid gap-6 lg:grid-cols-[0.9fr,1.1fr]">
         <div className="rounded-[2rem] border border-white/10 bg-white/[0.05] p-6">
-          <p className="text-xs font-semibold tracking-[0.24em] text-amber-200 uppercase">
-            Checklist Analisa
-          </p>
+            <p className="text-xs font-semibold tracking-[0.24em] text-amber-200 uppercase">
+              Checklist Analisa
+            </p>
           <div className="mt-5 space-y-3">
             {checklist.map((item, index) => (
               <div
@@ -87,23 +85,38 @@ export default async function ChartLabPage() {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="text-xs font-semibold tracking-[0.24em] text-amber-200 uppercase">
-              Studi Kasus untuk Replay
+              Replay Desk
             </p>
             <h2 className="mt-3 text-3xl font-semibold text-white">
-              Latih mata chart dengan skenario yang sudah punya narasi
+              Bandingkan live chart dengan skenario dan catatan desk
             </h2>
           </div>
           <Link
-            href="/studi-kasus"
+            href="/journal"
             className="rounded-full border border-white/10 px-4 py-2 text-sm text-slate-300"
           >
-            Semua studi kasus
+            Buka journal
           </Link>
         </div>
 
         <div className="grid gap-5 lg:grid-cols-3">
-          {caseStudies.map((caseStudy) => (
-            <CaseStudyCard key={caseStudy.slug} caseStudy={caseStudy} />
+          {scenarios.map((scenario, index) => (
+            <article
+              key={scenario.title}
+              className="rounded-[1.8rem] border border-white/10 bg-white/[0.05] p-6"
+            >
+              <p className="font-mono text-xs tracking-[0.22em] text-slate-500 uppercase">
+                Scenario {index + 1}
+              </p>
+              <h3 className="mt-4 text-2xl font-semibold text-white">{scenario.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-300">
+                <span className="font-medium text-white">Trigger:</span> {scenario.trigger}
+              </p>
+              <p className="mt-3 text-sm leading-7 text-slate-400">
+                <span className="font-medium text-white">Check desk note:</span>{" "}
+                {journalEntries[index]?.lesson}
+              </p>
+            </article>
           ))}
         </div>
       </section>

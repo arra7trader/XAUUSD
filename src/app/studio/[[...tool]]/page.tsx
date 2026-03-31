@@ -18,7 +18,8 @@ export default function StudioPage() {
           </h1>
           <p className="mt-4 text-base leading-8 text-slate-300">
             Setelah environment diisi, route ini akan berubah menjadi dashboard admin
-            untuk mengelola course, lesson, quiz, glossary, case study, dan analisa mingguan.
+            untuk mengelola bias harian, key levels, market notes, skenario, journal,
+            dan blok analisa lain yang dipakai war room XAUUSD.
           </p>
         </div>
       </div>

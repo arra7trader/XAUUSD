@@ -52,7 +52,7 @@ export default function Image() {
               XAUUSD Extreme Expert
             </div>
             <div style={{ fontSize: 54, fontWeight: 700, maxWidth: 820 }}>
-              Belajar kenapa chart emas bisa naik, turun, dan berubah struktur
+              War room untuk membaca struktur, likuiditas, dan skenario XAUUSD
             </div>
           </div>
         </div>
@@ -65,8 +65,8 @@ export default function Image() {
             color: "rgba(226,232,240,0.9)",
           }}
         >
-          <span>Kurikulum • Chart Lab • Studi Kasus • Quiz • Glossary</span>
-          <span>Bahasa Indonesia</span>
+          <span>Structure • Key Levels • Naked Chart • Scenarios • Journal</span>
+          <span>Asisten analisa XAUUSD</span>
         </div>
       </div>
     ),

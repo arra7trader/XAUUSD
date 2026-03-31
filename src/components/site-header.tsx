@@ -1,11 +1,12 @@
 import Link from "next/link";
 
 const navItems = [
-  { href: "/kurikulum", label: "Kurikulum" },
-  { href: "/chart-lab", label: "Chart Lab" },
-  { href: "/studi-kasus", label: "Studi Kasus" },
-  { href: "/glossary", label: "Glossary" },
-  { href: "/analisa-mingguan", label: "Analisa" },
+  { href: "/daily-bias", label: "Daily Bias" },
+  { href: "/market-structure", label: "Structure" },
+  { href: "/key-levels", label: "Key Levels" },
+  { href: "/naked-chart", label: "Naked Chart" },
+  { href: "/scenarios", label: "Scenarios" },
+  { href: "/journal", label: "Journal" },
   { href: "/studio", label: "Studio" },
 ];
 
@@ -22,7 +23,7 @@ export function SiteHeader() {
               Extreme Expert
             </p>
             <p className="text-xs text-slate-300">
-              Belajar XAUUSD dengan konteks, bukan tebakan
+              Bedah XAUUSD dengan struktur, likuiditas, dan konteks
             </p>
           </div>
         </Link>
@@ -40,10 +41,10 @@ export function SiteHeader() {
         </nav>
 
         <Link
-          href="/kurikulum"
+          href="/daily-bias"
           className="rounded-full border border-amber-300/40 bg-amber-300/15 px-4 py-2 text-sm font-medium text-amber-100 transition hover:bg-amber-300/25"
         >
-          Mulai Belajar
+          Lihat Bias
         </Link>
       </div>
     </header>

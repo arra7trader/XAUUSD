@@ -17,17 +17,19 @@ export function SiteFooter() {
         <div className="space-y-3">
           <p className="font-medium text-white">Navigasi</p>
           <div className="flex flex-col gap-2">
-            <Link href="/kurikulum">Kurikulum</Link>
-            <Link href="/chart-lab">Chart Lab</Link>
-            <Link href="/studi-kasus">Studi Kasus</Link>
-            <Link href="/glossary">Glossary</Link>
+            <Link href="/daily-bias">Daily Bias</Link>
+            <Link href="/market-structure">Market Structure</Link>
+            <Link href="/key-levels">Key Levels</Link>
+            <Link href="/naked-chart">Naked Chart</Link>
+            <Link href="/scenarios">Scenarios</Link>
           </div>
         </div>
 
         <div className="space-y-3">
           <p className="font-medium text-white">Operasional</p>
           <div className="flex flex-col gap-2">
-            <Link href="/analisa-mingguan">Analisa Mingguan</Link>
+            <Link href="/journal">Journal</Link>
+            <Link href="/chart-lab">War Room</Link>
             <Link href="/studio">CMS Studio</Link>
             <a href="https://www.tradingview.com/" target="_blank" rel="noreferrer">
               TradingView
