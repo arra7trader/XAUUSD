@@ -1,238 +1,193 @@
 import Link from "next/link";
 
-import {
-  GoldMarketStructureDiagram,
-  GoldUsdRelationshipDiagram,
-  NakedChartTrendDiagram,
-  SweepReclaimDiagram,
-  WhyDownDiagram,
-  WhyUpDiagram,
-} from "@/components/xauusd-explainer-diagrams";
+import { PlaybookGrid, SourceDeck } from "@/components/candlestick-lab-sections";
 import { buildMetadata } from "@/lib/metadata";
+import {
+  expertSources,
+  inferenceNote,
+  learningSteps,
+  m5Playbooks,
+  xauusdTraits,
+} from "@/lib/candlestick-focus";
 
 export const metadata = buildMetadata({
-  title: "Kenapa XAUUSD Naik dan Turun",
+  title: "M5 Candle Lab XAUUSD",
   description:
-    "Penjelasan visual tentang kenapa XAUUSD bisa naik atau turun, lengkap dengan struktur market emas, naked chart, dan referensi utama.",
+    "Playbook expert candlestick XAUUSD untuk membaca M5 continuation, retrace, pullback, trap, dan reversal dari price action.",
   path: "/kenapa-xauusd-naik-turun",
 });
 
-const sourceLinks = [
+const deepNotes = [
   {
-    label: "LBMA Guide to the Global OTC Precious Metals Market",
-    href: "https://cdn.lbma.org.uk/downloads/Publications/LBMA-The-Guide-2017-v1.pdf",
+    title: "Kenapa candle bullish tidak selalu berarti buy",
+    text:
+      "Kalau candle bullish muncul tepat di tengah range, tanpa level penting, dan tidak punya follow-through, itu bisa hanya noise. Yang membuat candle bullish jadi berarti adalah location dan acceptance sesudahnya.",
   },
   {
-    label: "CME Price Discovery in Futures Markets",
-    href: "https://www.cmegroup.com/education/courses/introduction-to-futures/price-discovery.html",
+    title: "Kenapa retrace bisa terjadi padahal bias masih naik",
+    text:
+      "Setelah impuls tajam, market sering perlu tarik napas: taking profit, test ulang breakout origin, atau menunggu order baru. Retrace baru berbahaya kalau seller mulai accepted di bawah higher low penting.",
   },
   {
-    label: "CME Gold Futures & Options Fact Card",
-    href: "https://www.cmegroup.com/trading/metals/files/fact-card-gold-futures-options.pdf",
-  },
-  {
-    label: "World Gold Council: Gold and US interest rates, a reality check",
-    href: "https://www.gold.org/goldhub/research/gold-and-us-interest-rates-a-reality-check",
-  },
-  {
-    label: "World Gold Council Gold Valuation Model",
-    href: "https://www.gold.org/goldhub/tools/gold-valuation-model",
-  },
-  {
-    label: "Oxford Review of Financial Studies: Gold's Value as an Investment",
-    href: "https://academic.oup.com/rfs/article/38/2/422/7887576",
+    title: "Kenapa M5 emas suka menyapu high/low dulu",
+    text:
+      "XAUUSD sering mengambil likuiditas di intraday high-low sebelum jalan ke arah sebenarnya. Karena itu, candle sapuan tanpa reclaim belum cukup; kita butuh konfirmasi respons sesudah sweep.",
   },
 ];
 
-const referencePillars = [
+const sessionFrames = [
   {
-    title: "Pasar emas itu besar dan nyata",
-    body:
-      "LBMA menunjukkan bullion market global banyak berputar di OTC London. Jadi candle XAUUSD adalah jejak dari pasar emas yang sangat besar, bukan sekadar reaksi chart retail.",
-    source: "LBMA Guide",
+    title: "Awal London",
+    text:
+      "Sering jadi fase ekspansi pertama. High-low Asia banyak diuji di sini, jadi candle M5 pada jam ini sering sangat informatif.",
   },
   {
-    title: "Futures ikut membentuk gerakan harga",
-    body:
-      "CME menjelaskan futures membantu price discovery secara transparan. Saat order dan likuiditas aktif, breakout dan rotation di chart bisa jadi jauh lebih tajam.",
-    source: "CME Price Discovery",
+    title: "Overlap London-New York",
+    text:
+      "Biasanya fase paling hidup. Kalau breakout valid, follow-through lebih mudah terlihat pada rentang ini.",
   },
   {
-    title: "Real yield dan USD adalah pendorong utama",
-    body:
-      "World Gold Council dan riset Oxford sama-sama menegaskan bahwa emas sangat sensitif terhadap real rates dan kekuatan dolar AS.",
-    source: "WGC + Oxford RFS",
+    title: "Menjelang data AS",
+    text:
+      "Candle bisa terlihat rapih lalu tiba-tiba berubah agresif. Pada fase ini, lebih penting membaca acceptance sesudah data daripada mencoba menebak candle pertama.",
   },
-  {
-    title: "Chart tetap jadi tempat konfirmasi",
-    body:
-      "Makro memberi arah besar, tetapi keputusan trading tetap perlu konfirmasi dari structure, rejection, acceptance, sweep, dan follow-through di level penting.",
-    source: "Auction logic + price action",
-  },
-];
-
-const practicalChecklist = [
-  "Lihat dulu apakah struktur market sedang bullish, bearish, atau hanya range.",
-  "Tandai level penting: swing high-low, equal highs-lows, dan area reclaim terakhir.",
-  "Tanya apakah harga diterima di luar level atau cuma menyentuh lalu kembali masuk range.",
-  "Selaraskan dengan konteks: USD, real yield, fear/risk, dan sesi market yang sedang aktif.",
 ];
 
 export default function WhyGoldMovesPage() {
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
-      <section className="grid gap-6 lg:grid-cols-[1.08fr,0.92fr]">
-        <div className="panel rounded-[2.4rem] p-7 sm:p-9">
-          <div className="space-y-6">
-            <div className="eyebrow">Penjelasan visual</div>
-            <div className="space-y-4">
-              <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-                Kenapa XAUUSD bisa naik dan turun, dijelaskan lebih rapi dan lebih dalam
-              </h1>
-              <p className="max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
-                Halaman ini saya ubah supaya lebih enak dipahami. Bukan cuma poster singkat, tapi
-                alur yang benar-benar menjelaskan apa yang mendorong emas, apa yang mendorong dolar,
-                dan bagaimana semuanya terlihat di naked chart.
-              </p>
-            </div>
+    <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+      <section className="grid gap-6 lg:grid-cols-[1.02fr,0.98fr]">
+        <div className="relative overflow-hidden rounded-[2.7rem] border border-white/10 bg-[radial-gradient(circle_at_top_left,_rgba(251,191,36,0.18),transparent_28%),radial-gradient(circle_at_86%_16%,_rgba(45,212,191,0.14),transparent_24%),linear-gradient(180deg,rgba(10,18,28,0.96),rgba(6,10,16,0.92))] p-7 sm:p-10">
+          <div className="eyebrow">M5 candle lab</div>
+          <h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-6xl">
+            Bedah candlestick XAUUSD yang lebih expert,
+            <span className="block text-amber-200">tanpa bikin kamu capek baca dasar yang berulang.</span>
+          </h1>
+          <p className="mt-5 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+            Halaman ini saya arahkan ke kebutuhan yang kamu sebut sendiri: candle M5, kenapa harga
+            naik, kenapa retrace, kapan pullback sehat, kapan breakout gagal, dan bagaimana membaca
+            semua itu khusus untuk XAUUSD.
+          </p>
 
-            <div className="grid gap-3 sm:grid-cols-3">
-              {[
-                { label: "Konsep inti", value: "emas x dolar" },
-                { label: "Yang dibaca", value: "structure + context" },
-                { label: "Tujuan", value: "arah probabilitas" },
-              ].map((item) => (
-                <div key={item.label} className="panel-soft rounded-[1.5rem] p-4">
-                  <p className="metric-label">{item.label}</p>
-                  <p className="mt-3 text-lg font-semibold capitalize text-white">{item.value}</p>
-                </div>
-              ))}
-            </div>
+          <div className="mt-7 grid gap-3 sm:grid-cols-3">
+            {[
+              { label: "Fokus", value: "M5 price action" },
+              { label: "Yang dibedah", value: "continuation & pullback" },
+              { label: "Gaya baca", value: "context dulu" },
+            ].map((item) => (
+              <div key={item.label} className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-4">
+                <p className="metric-label">{item.label}</p>
+                <p className="mt-3 text-lg font-semibold capitalize text-white">{item.value}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-7 flex flex-wrap gap-3">
+            <Link
+              href="/chart-lab"
+              className="rounded-full border border-amber-300/35 bg-amber-300/14 px-6 py-3 text-sm font-medium text-amber-100 transition hover:bg-amber-300/22"
+            >
+              Buka chart desk
+            </Link>
+            <Link
+              href="/"
+              className="rounded-full border border-white/10 px-6 py-3 text-sm font-medium text-slate-200 transition hover:bg-white/[0.06]"
+            >
+              Kembali ke homepage baru
+            </Link>
           </div>
         </div>
 
-        <div className="panel-strong rounded-[2.4rem] p-6 sm:p-7">
-          <p className="metric-label">Cara baca paling singkat</p>
+        <div className="panel-strong rounded-[2.4rem] p-6 sm:p-8">
+          <p className="metric-label">Yang harus tertanam di kepala</p>
           <div className="mt-5 space-y-3">
             {[
-              "XAUUSD naik jika emas dibeli, USD melemah, atau dua-duanya terjadi bersamaan.",
-              "XAUUSD turun jika emas kehilangan bid, USD menguat, atau dua-duanya terjadi bersamaan.",
-              "Di chart, jangan terpaku pada satu candle. Lihat structure, level, lalu respons harga sesudah level disentuh.",
+              "Candle yang kuat harus diuji dengan follow-through, bukan disembah sendirian.",
+              "Pullback sehat biasanya lebih lemah daripada impulse yang melahirkannya.",
+              "Breakout yang kembali masuk range sering berubah menjadi trap.",
+              "XAUUSD M5 sangat sensitif pada sweep high-low sesi dan momentum data AS.",
             ].map((item) => (
-              <div
-                key={item}
-                className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] px-4 py-4 text-sm leading-7 text-slate-300"
-              >
+              <div key={item} className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] px-4 py-4 text-sm leading-7 text-slate-300">
                 {item}
               </div>
             ))}
           </div>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              href="/daily-bias"
-              className="rounded-full border border-amber-300/35 bg-amber-300/14 px-5 py-2.5 text-sm font-medium text-amber-100"
-            >
-              Lanjut ke daily bias
-            </Link>
-            <Link
-              href="/chart-lab"
-              className="rounded-full border border-white/10 px-5 py-2.5 text-sm text-slate-300"
-            >
-              Buka war room chart
-            </Link>
-          </div>
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-2">
-        <GoldUsdRelationshipDiagram />
-        <WhyUpDiagram />
+      <section className="grid gap-5 lg:grid-cols-3">
+        {deepNotes.map((item) => (
+          <article key={item.title} className="panel rounded-[2rem] p-5 sm:p-6">
+            <p className="metric-label">Expert note</p>
+            <h2 className="mt-4 text-2xl font-semibold text-white">{item.title}</h2>
+            <p className="mt-4 text-sm leading-7 text-slate-300">{item.text}</p>
+          </article>
+        ))}
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-2">
-        <WhyDownDiagram />
-        <NakedChartTrendDiagram />
+      <section className="space-y-6">
+        <div>
+          <p className="metric-label">Core playbooks</p>
+          <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">
+            Inilah kerangka expert yang lebih dekat dengan real trading XAUUSD
+          </h2>
+        </div>
+        <PlaybookGrid playbooks={m5Playbooks} />
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[1.05fr,0.95fr]">
-        <GoldMarketStructureDiagram />
-        <div className="panel rounded-[2rem] p-6 sm:p-7">
-          <p className="metric-label">Lapisan referensi</p>
-          <h2 className="mt-3 text-2xl font-semibold text-white">
-            Empat hal yang benar-benar perlu kamu pegang
+      <section className="grid gap-6 lg:grid-cols-[0.95fr,1.05fr]">
+        <div className="panel rounded-[2.3rem] p-6 sm:p-8">
+          <p className="metric-label">Sesi dan karakter</p>
+          <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">
+            M5 candle harus dibaca bersama waktu dan karakter emas
           </h2>
           <div className="mt-6 space-y-3">
-            {referencePillars.map((item) => (
-              <div key={item.title} className="rounded-[1.4rem] border border-white/8 bg-white/[0.03] p-4">
+            {sessionFrames.map((item) => (
+              <div key={item.title} className="rounded-[1.5rem] border border-white/10 bg-slate-950/70 p-4">
+                <p className="text-lg font-semibold text-white">{item.title}</p>
+                <p className="mt-2 text-sm leading-7 text-slate-300">{item.text}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 space-y-3">
+            {xauusdTraits.map((item) => (
+              <div key={item.title} className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-4">
                 <p className="text-base font-semibold text-white">{item.title}</p>
-                <p className="mt-2 text-sm leading-7 text-slate-300">{item.body}</p>
-                <p className="mt-3 text-xs uppercase tracking-[0.18em] text-slate-500">{item.source}</p>
+                <p className="mt-2 text-sm leading-7 text-slate-300">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="panel rounded-[2.3rem] p-6 sm:p-8">
+          <p className="metric-label">Cara belajar yang lebih efisien</p>
+          <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">
+            Jangan hafal semua candle. Hafal urutan baca market-nya.
+          </h2>
+          <div className="mt-6 grid gap-4">
+            {learningSteps.map((item) => (
+              <div key={item.title} className="rounded-[1.6rem] border border-white/10 bg-white/[0.04] p-5">
+                <p className="text-lg font-semibold text-white">{item.title}</p>
+                <p className="mt-3 text-sm leading-7 text-slate-300">{item.text}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section>
-        <SweepReclaimDiagram />
-      </section>
-
-      <section className="grid gap-6 lg:grid-cols-[1fr,1fr]">
-        <div className="panel rounded-[2rem] p-6 sm:p-7">
-          <p className="metric-label">Checklist sederhana</p>
-          <h2 className="mt-3 text-2xl font-semibold text-white">
-            Urutan baca chart supaya tidak cepat salah narasi
+      <section className="grid gap-6 lg:grid-cols-[0.9fr,1.1fr]">
+        <div className="panel rounded-[2.3rem] p-6 sm:p-8">
+          <p className="metric-label">Sumber valid</p>
+          <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">
+            Referensi expert yang saya pakai untuk menyusun framework ini
           </h2>
-          <div className="mt-5 space-y-3">
-            {practicalChecklist.map((item, index) => (
-              <div key={item} className="panel-soft rounded-[1.4rem] px-4 py-4">
-                <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Langkah {index + 1}</p>
-                <p className="mt-2 text-sm leading-7 text-slate-300">{item}</p>
-              </div>
-            ))}
-          </div>
+          <p className="mt-4 text-sm leading-7 text-slate-300 sm:text-base">
+            Untuk pola candle dan pullback saya pakai referensi price action expert. Untuk XAUUSD
+            khusus, saya gabungkan dengan struktur market emas dan driver makronya.
+          </p>
         </div>
 
-        <div className="panel rounded-[2rem] p-6 sm:p-7">
-          <p className="metric-label">Sumber referensi utama</p>
-          <h2 className="mt-3 text-2xl font-semibold text-white">
-            Fondasi yang saya pakai untuk menjelaskan XAUUSD
-          </h2>
-          <div className="mt-5 space-y-3">
-            {sourceLinks.map((source) => (
-              <a
-                key={source.href}
-                href={source.href}
-                target="_blank"
-                rel="noreferrer"
-                className="block rounded-[1.4rem] border border-white/10 bg-slate-950/70 px-4 py-4 text-sm leading-7 text-slate-300 transition hover:border-white/20 hover:bg-white/[0.05]"
-              >
-                {source.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="panel rounded-[2rem] p-6 sm:p-7">
-        <p className="metric-label">Kesimpulan cepat</p>
-        <h2 className="mt-3 text-2xl font-semibold text-white">
-          Jika kamu ingin tahu kenapa harga naik atau turun
-        </h2>
-        <div className="mt-5 grid gap-3 lg:grid-cols-3">
-          {[
-            "Cari dulu apakah dorongannya datang dari emas yang dibeli, dolar yang dilemahkan, atau dua-duanya.",
-            "Lalu lihat apakah chart mengonfirmasi cerita itu lewat structure, sweep, rejection, atau acceptance di level penting.",
-            "Kalau makro bercerita bullish tapi harga gagal accepted di atas level, jangan paksa narasi naik hanya karena feeling.",
-          ].map((item) => (
-            <div
-              key={item}
-              className="rounded-[1.4rem] border border-white/8 bg-white/[0.03] p-4 text-sm leading-7 text-slate-300"
-            >
-              {item}
-            </div>
-          ))}
-        </div>
+        <SourceDeck sources={expertSources} note={inferenceNote} />
       </section>
     </div>
   );

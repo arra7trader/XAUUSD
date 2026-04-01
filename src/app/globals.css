@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #071019;
+  --background: #070d14;
   --foreground: #f8fafc;
   --surface: rgba(10, 20, 30, 0.72);
   --surface-strong: rgba(5, 12, 18, 0.88);
@@ -40,10 +40,12 @@ body::before {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 80%);
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    radial-gradient(circle at 20% 10%, rgba(251, 191, 36, 0.08), transparent 22%),
+    radial-gradient(circle at 82% 12%, rgba(45, 212, 191, 0.08), transparent 20%);
+  background-size: 56px 56px, 56px 56px, auto, auto;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.65), transparent 88%);
 }
 
 a {
@@ -73,14 +75,14 @@ a {
 
 .panel {
   border: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
   backdrop-filter: blur(18px);
 }
 
 .panel-strong {
   border: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(5, 12, 18, 0.9), rgba(9, 18, 27, 0.84));
+  background: linear-gradient(180deg, rgba(5, 12, 18, 0.92), rgba(9, 18, 27, 0.88));
   box-shadow: 0 28px 90px rgba(0, 0, 0, 0.34);
 }
 

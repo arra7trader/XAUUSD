@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "XAUUSD Extreme Expert",
   description:
-    "War room analisa XAUUSD berbahasa Indonesia untuk membaca market structure, liquidity, key levels, dan skenario arah harga dari naked chart.",
+    "Website berbahasa Indonesia untuk belajar expert candlestick XAUUSD: M5 price action, continuation, retrace, pullback, dan flow harga emas.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   chartSymbol: "OANDA:XAUUSD",
   disclaimer:
