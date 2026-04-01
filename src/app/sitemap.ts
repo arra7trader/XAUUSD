@@ -5,6 +5,7 @@ import { siteConfig } from "@/lib/site-config";
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
+    "/kenapa-xauusd-naik-turun",
     "/daily-bias",
     "/market-structure",
     "/key-levels",

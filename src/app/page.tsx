@@ -62,15 +62,21 @@ export default function HomePage() {
 
             <div className="flex flex-wrap gap-3">
               <Link
-                href="/daily-bias"
+                href="/kenapa-xauusd-naik-turun"
                 className="rounded-full border border-amber-300/35 bg-amber-300/14 px-6 py-3 text-sm font-medium text-amber-100 transition hover:bg-amber-300/22"
+              >
+                Pelajari kenapa naik/turun
+              </Link>
+              <Link
+                href="/daily-bias"
+                className="rounded-full border border-white/10 bg-white/[0.04] px-6 py-3 text-sm font-medium text-slate-200 transition hover:bg-white/[0.08]"
               >
                 Open Daily Bias
               </Link>
               <Link
                 href="/chart-lab"
-                className="rounded-full border border-white/10 bg-white/[0.04] px-6 py-3 text-sm font-medium text-slate-200 transition hover:bg-white/[0.08]"
-              >
+                className="rounded-full border border-white/10 bg-white/[0.02] px-6 py-3 text-sm font-medium text-slate-200 transition hover:bg-white/[0.08]"
+                >
                 Masuk War Room Chart
               </Link>
             </div>

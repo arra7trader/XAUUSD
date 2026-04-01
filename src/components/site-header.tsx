@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 const navItems = [
+  { href: "/kenapa-xauusd-naik-turun", label: "Kenapa Naik?" },
   { href: "/daily-bias", label: "Daily Bias" },
   { href: "/market-structure", label: "Structure" },
   { href: "/key-levels", label: "Key Levels" },

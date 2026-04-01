@@ -17,6 +17,7 @@ export function SiteFooter() {
         <div className="space-y-3">
           <p className="font-medium text-white">Navigasi</p>
           <div className="flex flex-col gap-2 text-slate-400">
+            <Link href="/kenapa-xauusd-naik-turun">Kenapa XAUUSD Naik/Turun</Link>
             <Link href="/daily-bias">Daily Bias</Link>
             <Link href="/market-structure">Market Structure</Link>
             <Link href="/key-levels">Key Levels</Link>
