@@ -16,30 +16,18 @@ function CandleStrip({ bars }: { bars: CandleBar[] }) {
 
   const getTone = (tone: CandleBar["tone"]) => {
     if (tone === "bull") {
-      return {
-        fill: "#5eead4",
-        stroke: "#99f6e4",
-        label: "#ccfbf1",
-      };
+      return { fill: "#5eead4", stroke: "#99f6e4", label: "#ccfbf1" };
     }
 
     if (tone === "bear") {
-      return {
-        fill: "#fb7185",
-        stroke: "#fda4af",
-        label: "#fecdd3",
-      };
+      return { fill: "#fb7185", stroke: "#fda4af", label: "#fecdd3" };
     }
 
-    return {
-      fill: "#e2e8f0",
-      stroke: "#f8fafc",
-      label: "#e2e8f0",
-    };
+    return { fill: "#e2e8f0", stroke: "#f8fafc", label: "#e2e8f0" };
   };
 
   return (
-    <div className="rounded-[1.7rem] border border-white/8 bg-slate-950/55 p-4">
+    <div className="rounded-[1.6rem] border border-white/8 bg-slate-950/55 p-4">
       <svg viewBox={`0 0 ${width} ${height + 28}`} className="w-full">
         <line
           x1="12"
@@ -74,7 +62,7 @@ function CandleStrip({ bars }: { bars: CandleBar[] }) {
                 height={bodyHeight}
                 rx="8"
                 fill={colors.fill}
-                opacity={bar.note ? 1 : 0.9}
+                opacity={bar.note ? 1 : 0.92}
               />
               {bar.note ? (
                 <text
@@ -95,74 +83,100 @@ function CandleStrip({ bars }: { bars: CandleBar[] }) {
   );
 }
 
-export function HeroPatternStack({
-  playbooks,
-}: {
-  playbooks: PlaybookCard[];
-}) {
+export function HeroPatternStack({ playbooks }: { playbooks: PlaybookCard[] }) {
+  const featured = playbooks[0];
+  const support = playbooks.slice(1, 3);
+
+  if (!featured) {
+    return null;
+  }
+
   return (
-    <div className="relative">
-      <div className="absolute inset-0 rounded-[2.4rem] bg-[radial-gradient(circle_at_top,_rgba(251,191,36,0.2),transparent_38%),radial-gradient(circle_at_82%_20%,_rgba(45,212,191,0.18),transparent_28%)] blur-2xl" />
-      <div className="relative panel-strong grid gap-4 rounded-[2.4rem] p-5 sm:p-6">
-        {playbooks.map((item, index) => (
-          <article
-            key={item.id}
-            className={`rounded-[1.7rem] border p-4 ${
-              index === 0
-                ? "border-amber-300/30 bg-amber-300/[0.08]"
-                : "border-white/10 bg-white/[0.03]"
-            }`}
-          >
-            <div className="flex items-center justify-between gap-3">
-              <p className="metric-label">{item.timeframe}</p>
-              <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-300">
-                {item.angle}
-              </span>
-            </div>
-            <h3 className="mt-3 text-xl font-semibold text-white">{item.title}</h3>
-            <div className="mt-4">
-              <CandleStrip bars={item.bars} />
-            </div>
-          </article>
-        ))}
+    <div className="panel rounded-[2.2rem] p-5 sm:p-6">
+      <p className="metric-label">Contoh paling penting</p>
+      <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">{featured.title}</h2>
+      <p className="mt-3 text-sm leading-7 text-slate-300">{featured.why}</p>
+
+      <div className="mt-5">
+        <CandleStrip bars={featured.bars} />
       </div>
+
+      <div className="mt-5 rounded-[1.5rem] border border-amber-300/18 bg-amber-300/[0.07] p-4">
+        <p className="text-xs font-medium uppercase tracking-[0.18em] text-amber-100">
+          Inti bacaannya
+        </p>
+        <p className="mt-2 text-sm leading-7 text-slate-200">{featured.clue}</p>
+      </div>
+
+      {support.length > 0 ? (
+        <div className="mt-5 grid gap-3">
+          {support.map((item) => (
+            <div key={item.id} className="rounded-[1.4rem] border border-white/8 bg-white/[0.03] p-4">
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-base font-semibold text-white">{item.title}</p>
+                <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-300">
+                  {item.timeframe}
+                </span>
+              </div>
+              <p className="mt-2 text-sm leading-7 text-slate-300">{item.angle}</p>
+            </div>
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }
 
 export function PlaybookGrid({ playbooks }: { playbooks: PlaybookCard[] }) {
   return (
-    <div className="grid gap-5 xl:grid-cols-2">
-      {playbooks.map((item) => (
-        <article
-          key={item.id}
-          className="group panel rounded-[2.1rem] p-5 transition duration-300 hover:-translate-y-0.5 hover:border-white/15"
-        >
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="rounded-full border border-amber-300/30 bg-amber-300/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-amber-100">
-              {item.timeframe}
-            </span>
-            <p className="text-sm text-slate-400">{item.angle}</p>
-          </div>
-
-          <h3 className="mt-4 text-2xl font-semibold text-white">{item.title}</h3>
-          <div className="mt-5">
-            <CandleStrip bars={item.bars} />
-          </div>
-
-          <div className="mt-5 grid gap-3">
-            {[
-              { label: "Kenapa bisa begitu", text: item.why },
-              { label: "Yang harus diawasi", text: item.watch },
-              { label: "Clue penting", text: item.clue },
-            ].map((block) => (
-              <div key={block.label} className="rounded-[1.4rem] border border-white/8 bg-white/[0.03] p-4">
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
-                  {block.label}
-                </p>
-                <p className="mt-2 text-sm leading-7 text-slate-300">{block.text}</p>
+    <div className="space-y-5">
+      {playbooks.map((item, index) => (
+        <article key={item.id} className="panel rounded-[2rem] p-5 sm:p-6">
+          <div className="grid gap-6 lg:grid-cols-[0.92fr,1.08fr] lg:items-start">
+            <div className="space-y-4">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="rounded-full border border-amber-300/30 bg-amber-300/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-amber-100">
+                  {item.timeframe}
+                </span>
+                <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-300">
+                  Playbook {index + 1}
+                </span>
               </div>
-            ))}
+
+              <div>
+                <h3 className="text-2xl font-semibold text-white sm:text-[1.75rem]">{item.title}</h3>
+                <p className="mt-2 text-sm leading-7 text-slate-300">{item.angle}</p>
+              </div>
+
+              <div className="space-y-3">
+                {[
+                  { label: "Kenapa naik/turun", text: item.why },
+                  { label: "Cara cek retrace", text: item.watch },
+                  { label: "Clue utama", text: item.clue },
+                ].map((block) => (
+                  <div key={block.label} className="rounded-[1.35rem] border border-white/8 bg-white/[0.03] p-4">
+                    <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
+                      {block.label}
+                    </p>
+                    <p className="mt-2 text-sm leading-7 text-slate-300">{block.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <CandleStrip bars={item.bars} />
+              <div className="rounded-[1.35rem] border border-white/8 bg-slate-950/60 p-4">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
+                  Cara pakai cepat
+                </p>
+                <p className="mt-2 text-sm leading-7 text-slate-300">
+                  Lihat dulu dorongan awal, lalu tanyakan apakah candle berikutnya mendukung arah
+                  yang sama atau justru menelan balik. Itu pembeda utama antara continuation dan
+                  trap.
+                </p>
+              </div>
+            </div>
           </div>
         </article>
       ))}
@@ -182,20 +196,30 @@ export function SourceDeck({
   note: string;
 }) {
   return (
-    <div className="grid gap-4">
-      {sources.map((source) => (
-        <a
-          key={source.href}
-          href={source.href}
-          target="_blank"
-          rel="noreferrer"
-          className="rounded-[1.6rem] border border-white/10 bg-slate-950/72 p-5 transition hover:border-white/20 hover:bg-white/[0.05]"
-        >
-          <p className="text-lg font-semibold text-white">{source.title}</p>
-          <p className="mt-3 text-sm leading-7 text-slate-300">{source.reason}</p>
-        </a>
-      ))}
-      <div className="rounded-[1.6rem] border border-sky-300/18 bg-sky-300/[0.08] p-5 text-sm leading-7 text-sky-100/90">
+    <div className="panel rounded-[2rem] p-5 sm:p-6">
+      <p className="metric-label">Referensi utama</p>
+      <div className="mt-5 space-y-3">
+        {sources.map((source, index) => (
+          <a
+            key={source.href}
+            href={source.href}
+            target="_blank"
+            rel="noreferrer"
+            className="block rounded-[1.4rem] border border-white/10 bg-slate-950/72 p-4 transition hover:border-white/20 hover:bg-white/[0.05]"
+          >
+            <div className="flex items-start gap-4">
+              <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-xs font-medium text-slate-300">
+                {index + 1}
+              </span>
+              <div>
+                <p className="text-base font-semibold text-white">{source.title}</p>
+                <p className="mt-2 text-sm leading-7 text-slate-300">{source.reason}</p>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div className="mt-4 rounded-[1.5rem] border border-sky-300/18 bg-sky-300/[0.08] p-4 text-sm leading-7 text-sky-100/90">
         {note}
       </div>
     </div>
@@ -204,15 +228,22 @@ export function SourceDeck({
 
 export function EditorialCTA() {
   return (
-    <div className="panel-strong rounded-[2.2rem] p-6 sm:p-8">
+    <div className="panel-strong rounded-[2rem] p-6 sm:p-8">
       <p className="metric-label">Langkah lanjut</p>
       <h2 className="mt-3 max-w-3xl text-3xl font-semibold text-white sm:text-4xl">
-        Setelah paham candle, kita pakai itu untuk membaca XAUUSD dengan kepala dingin
+        Setelah tampilan diringkas, fokusnya sekarang ada pada urutan belajar yang jelas
       </h2>
-      <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
-        Fokusnya bukan mencari indikator baru, tetapi membiasakan mata melihat dorongan, jeda,
-        trap, reclaim, dan failure di area yang memang penting.
-      </p>
+      <div className="mt-5 grid gap-3 md:grid-cols-3">
+        {[
+          "Mulai dari M5 Candle Lab untuk mengerti kenapa candle itu valid atau gagal.",
+          "Lanjut ke Pullback Playbook untuk membedakan retrace sehat dan retrace yang merusak.",
+          "Terakhir buka Chart Desk untuk menghubungkan playbook itu ke chart XAUUSD asli.",
+        ].map((item) => (
+          <div key={item} className="rounded-[1.35rem] border border-white/8 bg-white/[0.03] p-4 text-sm leading-7 text-slate-300">
+            {item}
+          </div>
+        ))}
+      </div>
       <div className="mt-6 flex flex-wrap gap-3">
         <Link
           href="/kenapa-xauusd-naik-turun"
@@ -221,10 +252,10 @@ export function EditorialCTA() {
           Buka M5 Candle Lab
         </Link>
         <Link
-          href="/chart-lab"
+          href="/naked-chart"
           className="rounded-full border border-white/10 px-5 py-3 text-sm text-slate-300 transition hover:bg-white/[0.06]"
         >
-          Masuk Chart Desk
+          Buka Pullback Playbook
         </Link>
       </div>
     </div>
