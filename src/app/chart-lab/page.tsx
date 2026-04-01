@@ -22,33 +22,66 @@ const checklist = [
 
 export default async function ChartLabPage() {
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-      <section className="space-y-5">
-        <p className="text-xs font-semibold tracking-[0.24em] text-amber-200 uppercase">
-          War Room Chart
-        </p>
-        <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-          Tempat utama untuk membedah chart live XAUUSD dengan kerangka analisa yang rapi
-        </h1>
-        <p className="max-w-3xl text-lg leading-8 text-slate-300">
-          Gunakan chart embed untuk membaca structure, session range, liquidity pool,
-          dan respons harga terhadap level. Fokus halaman ini adalah analisa aktif,
-          bukan sinyal trading.
-        </p>
+    <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+      <section className="grid gap-6 lg:grid-cols-[1.08fr,0.92fr]">
+        <div className="panel rounded-[2.4rem] p-7 sm:p-9">
+          <div className="space-y-6">
+            <div className="eyebrow">War room chart</div>
+            <div className="space-y-4">
+              <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+                Halaman chart yang dibuat supaya enak dipakai lama, bukan sekadar kelihatan ramai
+              </h1>
+              <p className="max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
+                Pakai halaman ini untuk membaca structure, session range, liquidity pool,
+                dan respons harga terhadap level. Mood desainnya saya buat lebih tenang
+                supaya keputusan tetap jernih saat fokus ke chart.
+              </p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-3">
+              {[
+                { label: "Primary lens", value: "acceptance" },
+                { label: "Session mode", value: "London / New York" },
+                { label: "Desk rhythm", value: "slow and clear" },
+              ].map((item) => (
+                <div key={item.label} className="panel-soft rounded-[1.5rem] p-4">
+                  <p className="metric-label">{item.label}</p>
+                  <p className="mt-3 text-lg font-semibold text-white">{item.value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="panel-strong rounded-[2.4rem] p-6 sm:p-7">
+          <p className="metric-label">Desk intent</p>
+          <div className="mt-5 grid gap-3">
+            {[
+              "Jangan cari entry dulu. Cari area yang benar-benar diterima atau ditolak.",
+              "Jika expansion awal terlihat meyakinkan, cek apakah H1 memberi follow-through.",
+              "Jika market terasa membingungkan, kemungkinan besar bias terbaik memang wait.",
+            ].map((note) => (
+              <div
+                key={note}
+                className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] px-4 py-4 text-sm leading-7 text-slate-300"
+              >
+                {note}
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       <ChartEmbedPanel />
 
       <section className="grid gap-6 lg:grid-cols-[0.9fr,1.1fr]">
-        <div className="rounded-[2rem] border border-white/10 bg-white/[0.05] p-6">
-            <p className="text-xs font-semibold tracking-[0.24em] text-amber-200 uppercase">
-              Checklist Analisa
-            </p>
+        <div className="panel rounded-[2rem] p-6">
+          <p className="metric-label">Checklist analisa</p>
           <div className="mt-5 space-y-3">
             {checklist.map((item, index) => (
               <div
                 key={item}
-                className="rounded-[1.4rem] border border-white/10 bg-slate-950/70 px-4 py-4 text-sm leading-7 text-slate-300"
+                className="panel-soft rounded-[1.4rem] px-4 py-4 text-sm leading-7 text-slate-300"
               >
                 <span className="mr-3 font-mono text-amber-200">0{index + 1}</span>
                 {item}
@@ -57,10 +90,8 @@ export default async function ChartLabPage() {
           </div>
         </div>
 
-        <div className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-6">
-          <p className="text-xs font-semibold tracking-[0.24em] text-amber-200 uppercase">
-            Reminder Penting
-          </p>
+        <div className="panel-strong rounded-[2rem] p-6">
+          <p className="metric-label">Reminder penting</p>
           <div className="mt-5 grid gap-4">
             {[
               "Jika breakout terjadi menjelang data besar, tunggu penerimaan harga.",
@@ -69,7 +100,7 @@ export default async function ChartLabPage() {
             ].map((note) => (
               <div
                 key={note}
-                className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4 text-sm leading-7 text-slate-300"
+                className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4 text-sm leading-7 text-slate-300"
               >
                 {note}
               </div>
@@ -84,9 +115,7 @@ export default async function ChartLabPage() {
       <section className="space-y-6">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold tracking-[0.24em] text-amber-200 uppercase">
-              Replay Desk
-            </p>
+            <p className="metric-label">Replay desk</p>
             <h2 className="mt-3 text-3xl font-semibold text-white">
               Bandingkan live chart dengan skenario dan catatan desk
             </h2>
@@ -103,9 +132,9 @@ export default async function ChartLabPage() {
           {scenarios.map((scenario, index) => (
             <article
               key={scenario.title}
-              className="rounded-[1.8rem] border border-white/10 bg-white/[0.05] p-6"
+              className="panel rounded-[1.9rem] p-6"
             >
-              <p className="font-mono text-xs tracking-[0.22em] text-slate-500 uppercase">
+              <p className="metric-label">
                 Scenario {index + 1}
               </p>
               <h3 className="mt-4 text-2xl font-semibold text-white">{scenario.title}</h3>

@@ -85,22 +85,23 @@ export function ChartEmbedPanel({
   }, [symbol]);
 
   return (
-    <div className="rounded-[2rem] border border-white/10 bg-slate-950/90 p-4">
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+    <div className="panel-strong rounded-[2.2rem] p-4 sm:p-5">
+      <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
         <div>
-          <p className="text-xs font-semibold tracking-[0.24em] text-amber-200 uppercase">
+          <p className="metric-label text-amber-200/80">
             War Room Chart
           </p>
-          <p className="text-sm text-slate-400">
-            Baca multi-timeframe, tandai level penting, lalu nilai acceptance atau rejection-nya.
+          <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-400">
+            Baca multi-timeframe, tandai level penting, lalu nilai acceptance atau rejection-nya
+            tanpa buru-buru memberi label breakout valid.
           </p>
         </div>
-        <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-300">
+        <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-slate-300">
           {symbol}
         </span>
       </div>
 
-      <div className="relative h-[540px] overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#08111a]">
+      <div className="relative h-[540px] overflow-hidden rounded-[1.7rem] border border-white/10 bg-[#08111a] shadow-inner shadow-black/35">
         <div
           id="tradingview_xauusd_panel"
           ref={containerRef}
@@ -109,7 +110,7 @@ export function ChartEmbedPanel({
 
         {fallback ? (
           <div className="absolute inset-0 flex items-center justify-center bg-slate-950/95 p-6">
-            <div className="max-w-md rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-6 text-center">
+            <div className="panel max-w-md rounded-[1.8rem] p-6 text-center">
               <p className="text-lg font-semibold text-white">
                 Chart embed belum berhasil dimuat
               </p>
